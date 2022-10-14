@@ -35,3 +35,4 @@ build/
 ### Custom ###
 /data
 /output
+_.DS_*
