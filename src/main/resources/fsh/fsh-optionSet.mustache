@@ -1,0 +1,17 @@
+CodeSystem: CS-{{id}}
+Id: CS-{{id}}
+Title: "CS {{name}}"
+Description: "{{description}}"
+* ^url =  http://terminology.dhis2.org/optionSets/{{id}}
+
+{{#options}}
+* #{{id}}
+  "{{name}}"
+  "{{description}}"
+{{/options}}
+
+ValueSet: VS-{{id}}
+Id: VS-{{id}}
+Title: "VS {{name}}"
+Description: "{{description}}"
+* include codes from system http://terminology.dhis2.org/optionSets/{{id}}
