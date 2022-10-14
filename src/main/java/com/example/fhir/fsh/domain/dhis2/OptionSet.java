@@ -1,4 +1,4 @@
-package com.example.fhir.fsh.domain;
+package com.example.fhir.fsh.domain.dhis2;
 
 import lombok.Data;
 

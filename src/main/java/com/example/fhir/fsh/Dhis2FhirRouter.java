@@ -1,6 +1,6 @@
 package com.example.fhir.fsh;
 
-import com.example.fhir.fsh.domain.OptionSets;
+import com.example.fhir.fsh.domain.dhis2.OptionSets;
 import lombok.AllArgsConstructor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import java.net.URI;
 
 @Component
 @AllArgsConstructor
-public class Router extends RouteBuilder
+public class Dhis2FhirRouter extends RouteBuilder
 {
     private final Dhis2Properties dhis2Properties;
 
@@ -35,7 +35,7 @@ public class Router extends RouteBuilder
 
         from( "timer:foo?repeatCount=1" )
             .process( x -> x.getIn().setBody( response.getBody() ) )
-            .process("cleanOptionSets")
+            .process("dhis2Cleanup")
             .to( "mustache:fsh/fsh-optionSets.mustache" )
             .to( "file:output?fileName=optionSets.fsh" );
     }

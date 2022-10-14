@@ -1,7 +1,7 @@
 package com.example.fhir.fsh;
 
-import com.example.fhir.fsh.domain.Option;
-import com.example.fhir.fsh.domain.OptionSets;
+import com.example.fhir.fsh.domain.dhis2.Option;
+import com.example.fhir.fsh.domain.dhis2.OptionSets;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Component
-public class CleanOptionSets implements Processor
+public class Dhis2Cleanup implements Processor
 {
     @Override
     public void process( Exchange exchange ) throws Exception
