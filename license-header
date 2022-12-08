@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004-2022, University of Oslo
+ * Copyright (c) 2004-$YEAR, University of Oslo
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,40 +25,3 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.example.fhir.fsh;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
-import org.springframework.stereotype.Component;
-
-import com.example.fhir.fsh.domain.dhis2.Option;
-import com.example.fhir.fsh.domain.dhis2.OptionSets;
-
-@Component
-public class Dhis2Cleanup implements Processor
-{
-    @Override
-    public void process( Exchange exchange )
-        throws Exception
-    {
-        OptionSets optionSets = (OptionSets) exchange.getIn().getBody();
-
-        Objects.requireNonNull( optionSets ).getOptionSets().forEach( os -> {
-            Map<String, Option> options = new HashMap<>();
-
-            for ( Option option : os.getOptions() )
-            {
-                if ( option == null )
-                    continue;
-                options.put( option.getId(), option );
-            }
-
-            os.setOptions( new ArrayList<>( options.values() ) );
-        } );
-    }
-}
